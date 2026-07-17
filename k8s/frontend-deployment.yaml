@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-task-frontend
+  labels:
+    app: ai-task-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-task-frontend
+  template:
+    metadata:
+      labels:
+        app: ai-task-frontend
+    spec:
+      containers:
+        - name: frontend
+          # The workflow will find this placeholder line and update it on every push
+          image: sunil-it06/ai-task-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

@@ -31,4 +31,4 @@ spec:
               value: "mongodb+srv://sunilguptait06:Sunil%40mern1@cluster0.stuqq5m.mongodb.net/ai-task-manager?retryWrites=true&w=majority&appName=Cluster0"
             # --- UPDATED TO CROSS-NAMESPACE DNS ---
             - name: REDIS_URL
-              value: "redis://argocd-redis.argocd.svc.cluster.local:6379"
+              value: "redis://dckr_pat_R639NI1XckA_OHe0FLb9CzEi9Zw@argocd-redis.argocd.svc.cluster.local:6379"

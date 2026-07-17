@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
         - name: worker
-          image: sunil-it06/ai-task-worker:latest
+          # --- FIXED ACCOUNT NAME TO MATCH YOUR DOCKER HUB HASHES ---
+          image: sunil2809/ai-task-worker:latest
           imagePullPolicy: Always
           env:
             - name: MONGO_URI
               value: "mongodb+srv://sunilguptait06:Sunil%40mern1@cluster0.stuqq5m.mongodb.net/ai-task-manager?retryWrites=true&w=majority&appName=Cluster0"
-            # --- FIXED TO MATCH YOUR CODE'S EXPECTED VARIABLE ---
             - name: REDIS_URL
               value: "redis://argocd-redis:6379"

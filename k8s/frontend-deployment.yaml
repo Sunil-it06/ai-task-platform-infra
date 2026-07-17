@@ -17,7 +17,7 @@ spec:
       containers:
         - name: frontend
           # The workflow will find this placeholder line and update it on every push
-          image: sunil2809/ai-task-frontend:de7c878
+          image: sunil2809/ai-task-frontend:b779270
           imagePullPolicy: Always
           ports:
             - containerPort: 80

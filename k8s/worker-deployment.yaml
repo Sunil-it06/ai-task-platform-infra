@@ -16,14 +16,20 @@ spec:
     spec:
       containers:
         - name: worker
-          # --- FIXED ACCOUNT NAME TO MATCH YOUR DOCKER HUB HASHES ---
-          image: sunil2809/ai-task-worker:b6501e1
+          image: sunil2809/ai-task-worker:latest
           imagePullPolicy: Always
-          # --- ADDED COMMAND TO FORCE THE QUEUE WORKER TO STAY ALIVE ---
-          # (If your script is plain Python and uses an infinite loop instead of Celery, 
-          # you can safely delete the 'command' and 'args' lines below)
-          command: ["celery"]
-          args: ["-A", "worker", "worker", "--loglevel=info"]
+          # --- REMOVED CELERY OVERRIDE & ADDED STANDBY FORCE LOOP ---
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "Starting worker wrapper..."
+              if [ -f "worker.py" ]; then
+                python -u worker.py
+              else
+                echo "worker.py not found in current directory!"
+              fi
+              echo "Script execution finished. Keeping pod alive for debugging..."
+              tail -f /dev/null
           env:
             - name: PYTHONUNBUFFERED
               value: "1"

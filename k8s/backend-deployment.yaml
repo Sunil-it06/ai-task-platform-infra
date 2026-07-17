@@ -24,4 +24,9 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
-            # Add other backend environment variables here (DB connection, secrets, etc.)
+            # --- INJECTED MINGO_URI VARIABLE ---
+            - name: MONGO_URI
+              value: "mongodb+srv://sunilguptait06:Sunil%40mern1@cluster0.stuqq5m.mongodb.net/ai-task-manager?retryWrites=true&w=majority&appName=Cluster0"
+            # --- REDIS HOST (For asynchronous task queuing) ---
+            - name: REDIS_HOST
+              value: "argocd-redis"

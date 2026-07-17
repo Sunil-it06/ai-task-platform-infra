@@ -19,7 +19,14 @@ spec:
           # --- FIXED ACCOUNT NAME TO MATCH YOUR DOCKER HUB HASHES ---
           image: sunil2809/ai-task-worker:latest
           imagePullPolicy: Always
+          # --- ADDED COMMAND TO FORCE THE QUEUE WORKER TO STAY ALIVE ---
+          # (If your script is plain Python and uses an infinite loop instead of Celery, 
+          # you can safely delete the 'command' and 'args' lines below)
+          command: ["celery"]
+          args: ["-A", "worker", "worker", "--loglevel=info"]
           env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
             - name: MONGO_URI
               value: "mongodb+srv://sunilguptait06:Sunil%40mern1@cluster0.stuqq5m.mongodb.net/ai-task-manager?retryWrites=true&w=majority&appName=Cluster0"
             - name: REDIS_URL

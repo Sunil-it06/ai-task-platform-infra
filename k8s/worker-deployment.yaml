@@ -17,7 +17,7 @@ spec:
       containers:
         - name: worker
           # --- FIXED ACCOUNT NAME TO MATCH YOUR DOCKER HUB HASHES ---
-          image: sunil2809/ai-task-worker:latest
+          image: sunil2809/ai-task-worker:b6501e1
           imagePullPolicy: Always
           # --- ADDED COMMAND TO FORCE THE QUEUE WORKER TO STAY ALIVE ---
           # (If your script is plain Python and uses an infinite loop instead of Celery, 

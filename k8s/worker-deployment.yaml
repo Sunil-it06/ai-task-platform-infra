@@ -16,10 +16,11 @@ spec:
     spec:
       containers:
         - name: worker
-          # The workflow will find this placeholder line and update it on every push
-          image: sunil2809/ai-task-worker:de7c878
+          image: sunil-it06/ai-task-worker:latest
           imagePullPolicy: Always
           env:
-            - name: PYTHONUNBUFFERED
-              value: "1"
-            # Add worker-specific environment variables here
+            - name: MONGO_URI
+              value: "mongodb+srv://sunilguptait06:Sunil%40mern1@cluster0.stuqq5m.mongodb.net/ai-task-manager?retryWrites=true&w=majority&appName=Cluster0"
+            # --- FIXED TO MATCH YOUR CODE'S EXPECTED VARIABLE ---
+            - name: REDIS_URL
+              value: "redis://argocd-redis:6379"

@@ -17,7 +17,7 @@ spec:
       containers:
         - name: worker
           # The workflow will find this placeholder line and update it on every push
-          image: sunil-it06/ai-task-worker:latest
+          image: sunil2809/ai-task-worker:de7c878
           imagePullPolicy: Always
           env:
             - name: PYTHONUNBUFFERED

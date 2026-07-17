@@ -16,14 +16,21 @@ spec:
     spec:
       containers:
         - name: worker
-          image: sunil2809/ai-task-worker:latest
-          imagePullPolicy: Always
-          # --- THE MAGIC BYPASS ---
+          image: # ... your worker image ...
           command: ["/bin/sh", "-c"]
           args:
             - |
-              echo "Bypassing indentation bug and explicitly calling main()..."
-              python -u -c "import worker; worker.main()"
+              echo "Initializing worker with secure keyword parsing..."
+              python -u -c "
+              import os, worker, redis
+              # Construct client directly via kwargs to bypass URL parsing bugs
+              worker.Redis.from_url = lambda url: redis.Redis(
+                  host=os.getenv('REDIS_HOST'),
+                  port=int(os.getenv('REDIS_PORT', 6379)),
+                  password=os.getenv('REDIS_PASSWORD')
+              )
+              worker.main()
+              "
           env:
             - name: PYTHONUNBUFFERED
               value: "1"
@@ -38,6 +45,6 @@ spec:
                 secretKeyRef:
                   name: argocd-secret
                   key: admin.password
-            # --- STITCH THE FULL URL DIRECTLY VIA KUBERNETES CONFIG ---
+            # Keep this as a dummy placeholder so line 28 of your worker.py doesn't crash on missing vars
             - name: REDIS_URL
-              value: "redis://:$(REDIS_PASSWORD)@$(REDIS_HOST):$(REDIS_PORT)"
+              value: "redis://localhost:6379"

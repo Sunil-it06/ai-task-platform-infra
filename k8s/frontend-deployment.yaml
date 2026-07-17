@@ -17,7 +17,19 @@ spec:
       containers:
         - name: frontend
           # The workflow will find this placeholder line and update it on every push
-          image: sunil-it06/ai-task-frontend:latest
+          image: sunil2809/ai-task-frontend:de7c878
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+          # --- MOUNT WRITABLE STORAGE PATHS FOR SECURE/NON-ROOT NGINX ---
+          volumeMounts:
+            - name: cache-volume
+              mountPath: /var/cache/nginx
+            - name: run-volume
+              mountPath: /var/run
+      # --- DEFINE THE MEMORY VOLUMES ---
+      volumes:
+        - name: cache-volume
+          emptyDir: {}
+        - name: run-volume
+          emptyDir: {}

@@ -29,12 +29,15 @@ spec:
               value: "1"
             - name: MONGO_URI
               value: "mongodb+srv://sunilguptait06:Sunil%40mern1@cluster0.stuqq5m.mongodb.net/ai-task-manager?retryWrites=true&w=majority&appName=Cluster0"
-            # 1. Provide the direct Redis Host address
             - name: REDIS_HOST
               value: "argocd-redis.argocd.svc.cluster.local"
-            # 2. Reference the secret key safely without hardcoding
+            - name: REDIS_PORT
+              value: "6379"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: argocd-secret
                   key: admin.password
+            # --- STITCH THE FULL URL DIRECTLY VIA KUBERNETES CONFIG ---
+            - name: REDIS_URL
+              value: "redis://:$(REDIS_PASSWORD)@$(REDIS_HOST):$(REDIS_PORT)"

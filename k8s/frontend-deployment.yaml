@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: sunil2809/ai-task-frontend:de7c878
+          image: sunil2809/ai-task-frontend:b779270
           imagePullPolicy: Always
           ports:
             # --- FIXED TO MATCH YOUR DOCKER FILE INTERNAL PORT ---

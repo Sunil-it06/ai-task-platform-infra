@@ -17,7 +17,7 @@ spec:
       containers:
         - name: worker
           # --- FIXED ACCOUNT NAME TO MATCH YOUR DOCKER HUB HASHES ---
-          image: sunil2809/ai-task-worker:latest
+          image: sunil2809/ai-task-worker:b779270
           imagePullPolicy: Always
           env:
             - name: MONGO_URI

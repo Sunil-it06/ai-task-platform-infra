@@ -24,9 +24,21 @@ spec:
           env:
             - name: NODE_ENV
               value: "production"
-            # --- INJECTED MINGO_URI VARIABLE ---
+            # --- INJECTED MONGO_URI VARIABLE ---
             - name: MONGO_URI
               value: "mongodb+srv://sunilguptait06:Sunil%40mern1@cluster0.stuqq5m.mongodb.net/ai-task-manager?retryWrites=true&w=majority&appName=Cluster0"
             # --- REDIS HOST (For asynchronous task queuing) ---
             - name: REDIS_HOST
               value: "argocd-redis"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend  # <-- THIS IS EXACTLY WHAT THE FRONTEND'S NGINX IS LOOKING FOR
+spec:
+  ports:
+    - port: 5000
+      targetPort: 5000
+  selector:
+    app: ai-task-backend  # Routes traffic directly to the backend container above

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: ai-task-worker:latest
+          image: sunil2809/ai-task-worker:b6501e1
           command: ["/bin/sh", "-c"]
           args:
             - |
